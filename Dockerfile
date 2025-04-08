@@ -1,4 +1,4 @@
-FROM maven:5.8.6 AS build
+FROM maven:3.8.6 AS build
 
 WORKDIR /app
 COPY /src /src
