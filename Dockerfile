@@ -1,7 +1,7 @@
 FROM maven:3.8.6 AS build
 
 WORKDIR /app
-COPY /src /src
+COPY /src ./src
 COPY pom.xml .
 
 RUN mvn clean install
