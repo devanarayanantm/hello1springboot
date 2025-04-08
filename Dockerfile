@@ -1,0 +1,15 @@
+FROM maven:5.8.6 as build
+
+WORKDIR /app
+COPY /src /src
+COPY pom.xml pom.xml
+
+RUN mvn clean install
+
+FROM openjdk:17-jdk-slim
+
+WORKDIR /app
+
+COPY --from=build /app/target/*.jar app.jar
+
+CMD java -jar app.jar
