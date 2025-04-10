@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: "2025-04-10T11:06:38Z"
+  generation: 1
+  labels:
+    app: examspring
+  name: examspring
+  namespace: default
+  resourceVersion: "13356"
+  uid: 55ba54b8-e3a2-4f80-bbd0-b32788205d93
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 3
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: examspring
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: examspring
+    spec:
+      containers:
+      - image: devanarayanantm/examspring
+        imagePullPolicy: Always
+        name: examspring
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+status: {}
