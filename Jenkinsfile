@@ -29,16 +29,16 @@ pipeline {
             }
         }
 
-        // stage('Kubernetes Deploy') {
-        //     when {
-        //         branch 'main'
-        //     }
-        //     steps {
-        //         sh '''
-        //             kubectl apply -f k8s/deployment.yaml
-        //             kubectl apply -f k8s/service.yaml
-        //         '''
-        //     }
-        // }
+	stage('Kubernetes Deploy') {
+	    when {
+        	branch 'main'
+    	    }
+    	    steps {
+        	sh '''
+            		kubectl apply -f k8smanifest/deployment.yaml
+           	//	kubectl apply -f k8s/service.yaml
+        	'''
+    }
+}
     }
 }
