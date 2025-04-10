@@ -1,11 +1,6 @@
 pipeline {
     agent any
 
-//    tools {
-//       maven 'Maven 3.8.6'
-//        jdk 'Java 17'
-//    }
-
     stages {
 
         stage('Build') {
@@ -36,8 +31,10 @@ pipeline {
     	    steps {
         	sh '''
                         kubectl delete -f k8smanifest/deployment.yaml --ignore-not-found
-                        echo "Reapplying deployment..."
                         kubectl apply -f k8smanifest/deployment.yaml
+
+			kubectl delete -f k8smanifest/service.yaml --ignore-not-found
+			kubectl apply -f k8smanifest/service.yaml
         	'''
     }
 }
