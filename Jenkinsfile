@@ -36,7 +36,6 @@ pipeline {
     	    steps {
         	sh '''
                         kubectl delete -f k8smanifest/deployment.yaml --ignore-not-found
-
                         echo "Reapplying deployment..."
                         kubectl apply -f k8smanifest/deployment.yaml
 
