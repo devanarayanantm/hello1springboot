@@ -35,7 +35,13 @@ pipeline {
     	    }
     	    steps {
         	sh '''
-            		kubectl apply -f k8smanifest/deployment.yaml
+			echo "Deleting existing deployment if exists..."
+                        kubectl delete -f k8smanifest/deployment.yaml --ignore-not-found
+
+                        echo "Reapplying deployment..."
+                        kubectl apply -f k8smanifest/deployment.yaml
+
+            	//	kubectl apply -f k8smanifest/deployment.yaml
            	//	kubectl apply -f k8s/service.yaml
         	'''
     }
